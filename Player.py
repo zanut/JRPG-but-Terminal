@@ -5,6 +5,7 @@ from Skill import Skill
 class Player:
     def __init__(self, lv: int, weapon: Equipment, armor: Equipment, skill: Skill, gold: int = 0):
         self.__hp = 100
+        self.__mp = 100
         self.__lv = lv
         self.__weapon = weapon
         self.__armor = armor
@@ -31,6 +32,14 @@ class Player:
     @hp.setter
     def hp(self, value):
         self.__hp = value
+
+    @property
+    def mp(self):
+        return self.__mp + self.stat['int'] * 10
+
+    @mp.setter
+    def mp(self, value):
+        self.__mp = value
 
     @property
     def weapon(self):

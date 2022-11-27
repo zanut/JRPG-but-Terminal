@@ -1,5 +1,7 @@
 from Monster import Monster
-from Player import Players
+from Player import Player
+from Equipment import Equipment
+from Skill import Skill
 
 class Mechanical:
     def __init__(self, player: Player):
@@ -20,6 +22,24 @@ class Mechanical:
                 if self.player.hp <= 0:
                     print("You lose")
                     return self.after_game()
+            elif choice == '2':
+                if self.player.skill.mp_cost > self.player.mp:
+                    print("Not enough mana")
+                else:
+                    monster.hp -= self.player.skill.dmg()
+                    if monster.hp <= 0:
+                        print("You win")
+                        self.player.exp_required[0] += monster.xp
+                        self.player.lv_up()
+                        self.player.gold += monster.gold
+                        return self.after_game()
+                    self.player.hp -= monster.atk - self.player.armor.get_power() - self.player.stat['vit']
+                    if self.player.hp <= 0:
+                        print("You lose")
+                        return 0
+            elif choice == '3':
+                print("You run")
+                return self.after_game()
 
     def after_game(self):
         while True:

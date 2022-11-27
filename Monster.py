@@ -1,10 +1,11 @@
 import random
+from Skill import Skill
 
 
 class Monster:
-    def __init__(self, lv, skill: Skill):
+    def __init__(self, lv):
         self.__lv_mons = lv
-        self.__skill = skill
+        self._skill = []
         self._hp = 100 + lv * 20
         self._mp = 100 + lv * 5
 
@@ -41,13 +42,28 @@ class Monster:
         return random.randint(150, 200) * self.__lv_mons
 
     @property
-    def skill(self):
-        return self.__skill
-
-    @skill.setter
-    def skill(self, value):
-        self.__skill = value
-
-    @property
     def lv(self):
         return self.__lv_mons
+
+    @property
+    def skill(self):
+        return self._skill
+
+    @skill.setter
+    def skill(self, skill: Skill):
+        self.skill.append(skill)
+
+    def skill_used(self):
+        index = random.randint(0, len(self.skill)-1)
+        if self.skill[index].mp_cost > self.mp:
+            power = self.skill[index].dmg
+        else:
+            power = self.atk
+        return power
+
+    def monster_action(self):
+        random_action = random.randint(0, 100)
+        if random_action <= 60:
+            return self.atk
+        else:
+            return self.skill_used()
