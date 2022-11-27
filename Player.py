@@ -3,7 +3,8 @@ from Skill import Skill
 
 
 class Player:
-    def __init__(self, lv: int, weapon: Equipment, armor: Equipment, skill: Skill, gold: int = 0):
+    def __init__(self, lv: int, weapon: Equipment, armor: Equipment, skill: Skill, gold: int = 0, name: str = 'Player'):
+        self._name = name
         self.__hp = 100
         self.__mp = 100
         self.__lv = lv
@@ -24,6 +25,10 @@ class Player:
             self.exp_required[0] -= self.exp_required[1]
             self.exp_required[1] += 100 * self.__lv
             self.point += 5
+
+    @property
+    def name(self):
+        return self._name
 
     @property
     def hp(self):
