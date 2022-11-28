@@ -5,8 +5,22 @@ class PlayerData:
     def __init__(self, name):
         self.name = name
 
-    def insert(self, bank_account):
-        new_data = {}
+    def insert(self, Player):
+        new_data = {
+            Player.name: {
+                        "HP": Player.hp,
+                        "MP": Player.mp,
+                        "Lv": Player.lv,
+                        "Weapon": Player.weapon.upgraded_lv,
+                        "Armor": Player.armor.upgraded_lv,
+                        "Skill": Player.skill.upgraded_lv,
+                        "Gold": Player.gold,
+                        "Stat": Player.stat,
+                        "Exp": Player.exp_required,
+                        "Point": Player.point
+            }
+        }
+
         try:
             with open("save.json", "r") as data_file:
                 data = json.load(data_file)
