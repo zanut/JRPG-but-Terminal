@@ -142,7 +142,8 @@ class Mechanical:
     def fight(self, monster: Monster, picture: int):
         while True:
             os.system('clear')
-            print(f"Monster HP: {monster.hp}")
+            print(f"Monster HP: {monster.hp}", end=' ')
+            print(f'Monster MP: {monster.mp}')
             print(f'{Ascii_model.monster()[picture]}')
             print(f"Player HP: {self.player.hp}", end=' ')
             print(f"MP: {self.player.mp}", end=' ')

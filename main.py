@@ -82,5 +82,7 @@ while True:
         result = in_game.fight(monster, picture)
         if result:
             in_game.player.lv_up()
+        elif not result:
+            in_game.after_game()
     elif choice == 'n':
         in_game.after_game()
