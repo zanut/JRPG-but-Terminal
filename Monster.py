@@ -57,7 +57,7 @@ class Monster:
         index = random.randint(0, len(self.skill)-1)
         if self.skill[index].mp_cost < self.mp:
             self.mp -= self.skill[index].mp_cost
-            power = self.skill[index].dmg
+            power = self.skill[index].dmg()
             print(f'Monster used {self.skill[index].name}!')
         else:
             power = self.atk

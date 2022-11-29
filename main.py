@@ -72,6 +72,7 @@ while True:
 in_game = Mechanical(player)
 in_game.after_game()
 while True:
+    in_game.player.restore()
     choice = input("Wanna fight (y/n): ")
     picture = random.randint(0, 3)
     if choice == 'y':
@@ -79,6 +80,5 @@ while True:
         result = in_game.fight(monster, picture)
         if result:
             in_game.player.lv_up()
-        in_game.player.restore()
     elif choice == 'n':
         in_game.after_game()

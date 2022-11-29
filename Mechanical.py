@@ -9,6 +9,7 @@ from Skill import Skill
 from playerdata import PlayerData
 import Ascii_model
 
+
 class Mechanical:
     def __init__(self, player: Player):
         self.player = player
@@ -159,15 +160,15 @@ class Mechanical:
                 self.player.exp_required[0] += monster.xp
                 self.player.gold += monster.gold
                 return True
-            monster_dmg = monster.action()
-            print(monster_dmg)
-            dmg_received = monster_dmg - (self.player.armor.get_power() + (self.player.stat['vit'] * 0.5))
+            dmg_received = monster.action() - (self.player.armor.get_power() + (self.player.stat['vit'] * 0.5))
             if dmg_received > 0:
                 self.player.hp -= dmg_received
                 print(f"You received {dmg_received} damage")
+                time.sleep(1)
             elif dmg_received < 0:
                 self.player.hp -= 1
                 print(f"You received 1 damage")
+                time.sleep(1)
             if self.player.hp <= 0:
                 print("You lose")
                 return False
