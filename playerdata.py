@@ -37,7 +37,7 @@ class PlayerData:
         try:
             with open("save.json", "r") as data_file:
                 data = json.load(data_file)
-        except (FileNotFoundError or ValueError):
+        except FileNotFoundError and ValueError:
             with open("save.json", "w") as data_file:
                 json.dump(new_data, data_file, indent=4)
         else:
@@ -70,17 +70,17 @@ class PlayerData:
         with open("save.json", "r") as data_file:
             data = json.load(data_file)
             player = data[name]
-            return [Skill(int(skill[0]),
-                          float(skill[1]),
-                          int(skill[2]),
-                          int(skill[3])
+            return [Skill(int(skill[0]),  # base_power
+                          float(skill[1]),  # dmg_multiplier
+                          int(skill[2]),  # mp cost
+                          int(skill[3]),  # upgraded_lv
+                          skill[4]  # name
                           ) for skill in player["Skill"]]
-
     def all_name(self):
         try:
             with open("save.json", "r") as data_file:
                 data = json.load(data_file)
                 return [name for name in data]
-        except (FileNotFoundError or ValueError):
+        except FileNotFoundError and ValueError:
             return []
 

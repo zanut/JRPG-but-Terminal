@@ -25,7 +25,7 @@ while True:
         player = Player(lv=1,
                         weapon=Equipment(10, 1.5, 0),
                         armor=Equipment(10, 1.5, 0),
-                        skill=Skill(10, 1.5, 10, 0),
+                        skill=Skill(10, 1.5, 10, 0, 'Slash'),
                         name=input('Name: '),
                         )
         break
@@ -46,6 +46,8 @@ while True:
                 else:
                     break
             break
+        else:
+            print('Empty save')
     elif choice == '3':
         sys.exit()
     else:
@@ -58,7 +60,7 @@ while True:
         result = in_game.fight(monster)
         if result:
             if in_game.player.lv_up():
-                print("Level up")
+                continue
         in_game.player.restore()
     elif choice == 'n':
         in_game.after_game()

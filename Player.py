@@ -1,3 +1,5 @@
+import os
+
 from Equipment import Equipment
 from Skill import Skill
 
@@ -6,7 +8,7 @@ class Player:
     def __init__(self, lv: int,
                  weapon: Equipment,
                  armor: Equipment,
-                 skill: [Skill],
+                 skill: list[Skill],
                  gold: int = 0,
                  name: str = 'Player',
                  xp: int = 0,
@@ -20,7 +22,7 @@ class Player:
         self.__lv = lv
         self.__weapon = weapon
         self.__armor = armor
-        self.skill = [skill]
+        self.skill = skill
         self.stat = stat
         self.exp_required = [xp, 100]  # [current exp, exp required to lv up]
         self.point = point
@@ -60,6 +62,10 @@ class Player:
     def lv(self):
         return self.__lv
 
+    @lv.setter
+    def lv(self, value):
+        self.__lv = value
+
     @property
     def gold(self):
         return self._gold
@@ -72,12 +78,16 @@ class Player:
         self.stat[stat] += value
 
     def lv_up(self):
-        if self.exp_required[0] > self.exp_required[1]:
-            self.__lv += 1
+        while self.exp_required[0] > self.exp_required[1]:
+            self.lv += 1
             self.exp_required[0] -= self.exp_required[1]
-            self.exp_required[1] += 100 * self.__lv
+            self.exp_required[1] += 100 * self.lv
             self.point += 5
+            print(f"Level up! You are now level {self.lv}!")
+            print(f"You have {self.point} points to spend")
+            os.system('cls')
+        return False
 
     def restore(self):
-        self.hp = 100 + self.stat['vit'] * 10
-        self.mp = 100 + self.stat['int'] * 10
+        self.hp = 10
+        self.mp = 10
