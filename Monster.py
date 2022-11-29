@@ -61,9 +61,16 @@ class Monster:
             power = self.atk
         return power
 
-    def monster_action(self):
+    def action(self):
         random_action = random.randint(0, 100)
         if random_action <= 60:
             return self.atk
         else:
             return self.skill_used()
+
+    def generate_monster(self,l):
+        leval_monster = random.randint(l - 1, l + 1)
+        rand_mons = Monster(lv=leval_monster)
+        return rand_mons
+
+

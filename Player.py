@@ -1,5 +1,3 @@
-import os
-
 from Equipment import Equipment
 from Skill import Skill
 
@@ -17,8 +15,8 @@ class Player:
         if stat is None:
             stat = {'str': 5, 'vit': 5, 'int': 5}
         self._name = name
-        self.__hp = 100
-        self.__mp = 100
+        self.__hp = 100 + stat['vit'] * 10
+        self.__mp = 100 + stat['int'] * 10
         self.__lv = lv
         self.__weapon = weapon
         self.__armor = armor
@@ -34,8 +32,7 @@ class Player:
 
     @property
     def hp(self):
-        hp = self.__hp + self.stat['vit'] * 10
-        return hp
+        return self.__hp
 
     @hp.setter
     def hp(self, value):
@@ -43,8 +40,7 @@ class Player:
 
     @property
     def mp(self):
-        mp = self.__mp + self.stat['int'] * 10
-        return mp
+        return self.__mp
 
     @mp.setter
     def mp(self, value):
@@ -85,9 +81,7 @@ class Player:
             self.point += 5
             print(f"Level up! You are now level {self.lv}!")
             print(f"You have {self.point} points to spend")
-            os.system('cls')
-        return False
 
     def restore(self):
-        self.hp = 10
-        self.mp = 10
+        self.hp = 100 + self.stat['vit'] * 10
+        self.mp = 100 + self.stat['int'] * 10
