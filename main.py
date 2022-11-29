@@ -16,10 +16,10 @@ with open('skill_name.csv') as f:
     for r in rows:
         SKILL.append(r)
 
-SKILL = [Skill(key['base_power'],
-               key['dmg_multiplier'],
-               key['mp_cost'],
-               key['upgraded_lv'],
+SKILL = [Skill(int(key['base_power']),
+               float(key['dmg_multiplier']),
+               int(key['mp_cost']),
+               int(key['upgraded_lv']),
                key['name']) for key in SKILL]
 
 

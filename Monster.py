@@ -3,7 +3,7 @@ from Skill import Skill
 
 
 class Monster:
-    def __init__(self, lv):
+    def __init__(self, lv: int):
         self.__lv_mons = lv
         self._skill = []
         self._hp = 100 + lv * 20
@@ -55,10 +55,13 @@ class Monster:
 
     def skill_used(self):
         index = random.randint(0, len(self.skill)-1)
-        if self.skill[index].mp_cost > self.mp:
+        if self.skill[index].mp_cost < self.mp:
+            self.mp -= self.skill[index].mp_cost
             power = self.skill[index].dmg
+            print(f'Monster used {self.skill[index].name}!')
         else:
             power = self.atk
+            print('Monster used attack!')
         return power
 
     def action(self):
@@ -67,6 +70,3 @@ class Monster:
             return self.atk
         else:
             return self.skill_used()
-
-
-

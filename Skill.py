@@ -35,6 +35,6 @@ class Skill:
         self.cost_upgrade += 1000
 
     def dmg(self):
-        return self.base_power * self.dmg_multiplier ** self.upgraded_lv
+        return self.base_power * (self.dmg_multiplier ** self.upgraded_lv)
 
 

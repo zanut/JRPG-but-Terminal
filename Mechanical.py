@@ -101,7 +101,6 @@ class Mechanical:
             os.system('clear')
             print(f"Gold: {self.player.gold}", end=' ')
             print(f"Exp: {self.player.exp_required[0]}/{self.player.exp_required[1]}")
-
             print('1. Upgrade\n2. Stats\n3. Save\n4. Load\n5. Leave base\n6. Exit Game ')
             choice = input("Choice: ")
             if choice == '1':
@@ -160,8 +159,15 @@ class Mechanical:
                 self.player.exp_required[0] += monster.xp
                 self.player.gold += monster.gold
                 return True
-            self.player.hp -= monster.action() - self.player.armor.get_power() - (
-                        self.player.stat['vit'] * 0.5)
+            monster_dmg = monster.action()
+            print(monster_dmg)
+            dmg_received = monster_dmg - (self.player.armor.get_power() + (self.player.stat['vit'] * 0.5))
+            if dmg_received > 0:
+                self.player.hp -= dmg_received
+                print(f"You received {dmg_received} damage")
+            elif dmg_received < 0:
+                self.player.hp -= 1
+                print(f"You received 1 damage")
             if self.player.hp <= 0:
                 print("You lose")
                 return False
