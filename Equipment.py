@@ -1,19 +1,9 @@
 class Equipment:
-    def __init__(self, base_power, stat_multiplier, upgraded_lv=0):
-        self.__base_power = base_power
-        self.__stat_multiplier = stat_multiplier
-        self.__upgraded_lv = upgraded_lv
+    def __init__(self, base_power: int, stat_multiplier: float, upgraded_lv: int=0):
+        self.base_power = base_power
+        self.stat_multiplier = stat_multiplier
+        self.upgraded_lv = upgraded_lv
         self.cost_upgrade = 1000
-
-    def upgrade(self):
-        self.upgraded_lv += 1
-        self.cost_upgrade += 1000
-
-    def get_power(self):
-        return self.base_power * self.stat_multiplier ** self.upgraded_lv
-
-    def __str__(self):
-        return f"Power: {self.get_power()}"
 
     @property
     def base_power(self):
@@ -27,3 +17,25 @@ class Equipment:
     def upgraded_lv(self):
         return self.__upgraded_lv
 
+
+    @base_power.setter
+    def base_power(self, value: int):
+        self.__base_power = value
+
+    @stat_multiplier.setter
+    def stat_multiplier(self, value: float):
+        self.__stat_multiplier = value
+
+    @upgraded_lv.setter
+    def upgraded_lv(self, value: int):
+        self.__upgraded_lv = value
+
+    def upgrade(self):
+        self.upgraded_lv += 1
+        self.cost_upgrade += 1000
+
+    def get_power(self):
+        return self.base_power * self.stat_multiplier ** self.upgraded_lv
+
+    def __str__(self):
+        return f"Power: {self.get_power()}"

@@ -26,23 +26,14 @@ class Player:
         self.point = point
         self._gold = gold
 
-    def upgrade_stat(self, stat, value):
-        self.stat[stat] += value
-
-    def lv_up(self):
-        if self.exp_required[0] > self.exp_required[1]:
-            self.__lv += 1
-            self.exp_required[0] -= self.exp_required[1]
-            self.exp_required[1] += 100 * self.__lv
-            self.point += 5
-
     @property
     def name(self):
         return self._name
 
     @property
     def hp(self):
-        return self.__hp + self.stat['vit'] * 10
+        hp = self.__hp + self.stat['vit'] * 10
+        return hp
 
     @hp.setter
     def hp(self, value):
@@ -50,7 +41,8 @@ class Player:
 
     @property
     def mp(self):
-        return self.__mp + self.stat['int'] * 10
+        mp = self.__mp + self.stat['int'] * 10
+        return mp
 
     @mp.setter
     def mp(self, value):
@@ -75,3 +67,17 @@ class Player:
     @gold.setter
     def gold(self, value):
         self._gold = value
+
+    def upgrade_stat(self, stat, value):
+        self.stat[stat] += value
+
+    def lv_up(self):
+        if self.exp_required[0] > self.exp_required[1]:
+            self.__lv += 1
+            self.exp_required[0] -= self.exp_required[1]
+            self.exp_required[1] += 100 * self.__lv
+            self.point += 5
+
+    def restore(self):
+        self.hp = 100 + self.stat['vit'] * 10
+        self.mp = 100 + self.stat['int'] * 10

@@ -5,31 +5,34 @@ from Skill import Skill
 
 
 class PlayerData:
-    def __init__(self, name):
+    def __init__(self, name=''):
         self.name = name
 
-    def save(self, Player):
+    def save(self, player: Player):
         new_data = {
             self.name: {
-                "HP": Player.hp,
-                "MP": Player.mp,
-                "Lv": Player.lv,
-                "Weapon": [Player.weapon.base_power,
-                           Player.weapon.dmg_multiplier,
-                           Player.weapon.upgraded_lv],
-                "Armor": [Player.armor.base_power,
-                          Player.armor.stat_multiplier,
-                          Player.armor.upgraded_lv],
+                "HP": player.hp,
+                "MP": player.mp,
+                "Lv": player.lv,
+                "Weapon": [player.weapon.base_power,
+                           player.weapon.stat_multiplier,
+                           player.weapon.upgraded_lv],
+                "Armor": [player.armor.base_power,
+                          player.armor.stat_multiplier,
+                          player.armor.upgraded_lv],
                 "Skill": [],
-                "Gold": Player.gold,
-                "Stat": Player.stat,
-                "Exp": Player.exp_required,
-                "Point": Player.point
+                "Gold": player.gold,
+                "Stat": player.stat,
+                "Exp": player.exp_required,
+                "Point": player.point
             }
         }
-        for i in Player.skill:
-            new_data[self.name]["Skill"].append(
-                [i.base_power, i.dmg_multiplier, i.mp_cost, i.upgraded_lv])
+        for skill in player.skill:
+            new_data[self.name]["Skill"].append([skill.base_power,
+                                                 skill.dmg_multiplier,
+                                                 skill.mp_cost,
+                                                 skill.upgraded_lv,
+                                                 skill.name])
 
         try:
             with open("save.json", "r") as data_file:
@@ -79,4 +82,5 @@ class PlayerData:
                 data = json.load(data_file)
                 return [name for name in data]
         except (FileNotFoundError or ValueError):
-            print(f'None save file found')
+            return []
+
