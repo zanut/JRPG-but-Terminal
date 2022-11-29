@@ -68,9 +68,5 @@ class Monster:
         else:
             return self.skill_used()
 
-    def generate_monster(self,l):
-        leval_monster = random.randint(l - 1, l + 1)
-        rand_mons = Monster(lv=leval_monster)
-        return rand_mons
 
 

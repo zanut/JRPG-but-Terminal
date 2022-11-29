@@ -20,13 +20,14 @@ SKILL = [Skill(key['base_power'],
                key['dmg_multiplier'],
                key['mp_cost'],
                key['upgraded_lv'],
-               key['name'])for key in SKILL]
+               key['name']) for key in SKILL]
+
 
 def generate_monster(l):
-    leval_monster = random.randint(l-1, l+1)
+    leval_monster = random.randint(l - 1, l + 1)
     rand_mons = Monster(lv=leval_monster)
     for _ in range(random.randint(1, 3)):
-        rand_mons.skill(SKILL[random.randint(0, len(SKILL)-1)])
+        rand_mons.skill = SKILL[random.randint(0, len(SKILL) - 1)]
     return rand_mons
 
 
@@ -72,13 +73,12 @@ in_game = Mechanical(player)
 in_game.after_game()
 while True:
     choice = input("Wanna fight (y/n): ")
+    picture = random.randint(0, 3)
     if choice == 'y':
         monster = generate_monster(in_game.player.lv)
-        result = in_game.fight(monster)
+        result = in_game.fight(monster, picture)
         if result:
             in_game.player.lv_up()
         in_game.player.restore()
     elif choice == 'n':
         in_game.after_game()
-
-

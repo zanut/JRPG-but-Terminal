@@ -139,11 +139,11 @@ class Mechanical:
                 print("Game closing ...")
                 return sys.exit()
 
-    def fight(self, monster: Monster):
+    def fight(self, monster: Monster, picture: int):
         while True:
             os.system('clear')
             print(f"Monster HP: {monster.hp}")
-            print(f'{Ascii_model.monster()}')
+            print(f'{Ascii_model.monster()[picture]}')
             print(f"Player HP: {self.player.hp}")
             print("1. Attack\n2. Skill\n3. Run")
             choice = input("Choice: ")
