@@ -3,17 +3,27 @@ from Skill import Skill
 
 
 class Player:
-    def __init__(self, lv: int, weapon: Equipment, armor: Equipment, skill: Skill, gold: int = 0, name: str = 'Player'):
+    def __init__(self, lv: int,
+                 weapon: Equipment,
+                 armor: Equipment,
+                 skill: [Skill],
+                 gold: int = 0,
+                 name: str = 'Player',
+                 xp: int = 0,
+                 stat=None,
+                 point: int = 0):
+        if stat is None:
+            stat = {'str': 5, 'vit': 5, 'int': 5}
         self._name = name
         self.__hp = 100
         self.__mp = 100
         self.__lv = lv
         self.__weapon = weapon
         self.__armor = armor
-        self.skill = skill
-        self.stat = {'str': 5, 'int': 5, 'vit': 5}
-        self.exp_required = [0, 100]  # [current exp, exp required to lv up]
-        self.point = 0
+        self.skill = [skill]
+        self.stat = stat
+        self.exp_required = [xp, 100]  # [current exp, exp required to lv up]
+        self.point = point
         self._gold = gold
 
     def upgrade_stat(self, stat, value):
