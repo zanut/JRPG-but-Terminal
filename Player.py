@@ -10,6 +10,7 @@ class Player:
                  gold: int = 0,
                  name: str = 'Player',
                  xp: int = 0,
+                 xp_need: int = 100,
                  stat=None,
                  point: int = 0):
         if stat is None:
@@ -22,7 +23,7 @@ class Player:
         self.__armor = armor
         self.skill = skill
         self.stat = stat
-        self.exp_required = [xp, 100]  # [current exp, exp required to lv up]
+        self.exp_required = [xp, xp_need]  # [current exp, exp required to lv up]
         self.point = point
         self._gold = gold
 

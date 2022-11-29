@@ -62,6 +62,7 @@ class PlayerData:
                           gold=player["Gold"],
                           name=name,
                           xp=int(player["Exp"][0]),
+                          xp_need=int(player["Exp"][1]),
                           stat=player["Stat"],
                           point=int(player["Point"])
                           )
