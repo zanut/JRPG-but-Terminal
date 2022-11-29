@@ -79,6 +79,7 @@ class PlayerData:
                           int(skill[3]),  # upgraded_lv
                           skill[4]  # name
                           ) for skill in player["Skill"]]
+
     def all_name(self):
         try:
             with open("save.json", "r") as data_file:
@@ -86,4 +87,3 @@ class PlayerData:
                 return [name for name in data]
         except FileNotFoundError and ValueError:
             return []
-

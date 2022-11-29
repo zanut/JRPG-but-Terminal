@@ -1,7 +1,3 @@
-import csv
-from Skill import Skill
-
-
 def monster():
     monster_image1 = R'''
                                              ,--,  ,.-.
