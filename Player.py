@@ -86,3 +86,10 @@ class Player:
     def restore(self):
         self.hp = 100 + self.stat['vit'] * 10
         self.mp = 100 + self.stat['int'] * 10
+
+    def power(self, equip: Equipment):
+        base = equip.get_power()
+        if equip.base == 'Sword':
+            return base + self.stat['str']*2
+        elif equip.base == 'Armor':
+            return base + self.stat['vit']*1.5

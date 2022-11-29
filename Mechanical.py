@@ -144,11 +144,16 @@ class Mechanical:
             os.system('clear')
             print(f"Monster HP: {monster.hp}")
             print(f'{Ascii_model.monster()[picture]}')
-            print(f"Player HP: {self.player.hp}")
+            print(f"Player HP: {self.player.hp}", end=' ')
+            print(f"MP: {self.player.mp}", end=' ')
+            print(f"Atk: {self.player.power(self.player.weapon)}", end=' ')
+            print(f"Def: {self.player.power(self.player.armor)}")
             print("1. Attack\n2. Skill\n3. Run")
             choice = input("Choice: ")
             if choice == '1':
-                monster.hp -= self.player.weapon.get_power() + (self.player.stat['str']*0.5)
+                monster.hp -= self.player.power(self.player.weapon)
+                print(f"Player attack {self.player.power(self.player.weapon)}")
+                time.sleep(1)
             elif choice == '2':
                 self.used_skill(monster)
             elif choice == '3':
@@ -160,7 +165,7 @@ class Mechanical:
                 self.player.exp_required[0] += monster.xp
                 self.player.gold += monster.gold
                 return True
-            dmg_received = monster.action() - (self.player.armor.get_power() + (self.player.stat['vit'] * 0.5))
+            dmg_received = monster.action() - self.player.power(self.player.armor)
             if dmg_received > 0:
                 self.player.hp -= dmg_received
                 print(f"You received {dmg_received} damage")

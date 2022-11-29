@@ -2,6 +2,7 @@ import os
 import random
 import sys
 import csv
+import time
 
 from Equipment import Equipment
 from Player import Player
@@ -38,8 +39,8 @@ while True:
     choice = input('Choice: ')
     if choice == '1':
         player = Player(lv=1,
-                        weapon=Equipment(10, 1.5, 0),
-                        armor=Equipment(10, 1.5, 0),
+                        weapon=Equipment(10, 1.5, 0, base='Sword'),
+                        armor=Equipment(10, 1.5, 0, base='Armor'),
                         skill=[Skill(10, 1.5, 10, 0, 'Slash')],
                         name=input('Name: '),
                         )
@@ -65,6 +66,7 @@ while True:
                 break
         else:
             print('Save is empty')
+            time.sleep(1)
     elif choice == '3':
         sys.exit()
     else:

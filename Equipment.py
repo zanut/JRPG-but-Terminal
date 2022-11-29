@@ -1,9 +1,11 @@
 class Equipment:
-    def __init__(self, base_power: int, stat_multiplier: float, upgraded_lv: int=0):
+    def __init__(self, base_power: int, stat_multiplier: float,
+                 upgraded_lv: int = 0, base: str = ''):
         self.base_power = base_power
         self.stat_multiplier = stat_multiplier
         self.upgraded_lv = upgraded_lv
         self.cost_upgrade = 1000
+        self.base = base
 
     @property
     def base_power(self):
@@ -17,7 +19,6 @@ class Equipment:
     def upgraded_lv(self):
         return self.__upgraded_lv
 
-
     @base_power.setter
     def base_power(self, value: int):
         self.__base_power = value
@@ -29,6 +30,14 @@ class Equipment:
     @upgraded_lv.setter
     def upgraded_lv(self, value: int):
         self.__upgraded_lv = value
+
+    @property
+    def base(self):
+        return self.__base
+
+    @base.setter
+    def base(self, value: str):
+        self.__base = value
 
     def upgrade(self):
         self.upgraded_lv += 1
