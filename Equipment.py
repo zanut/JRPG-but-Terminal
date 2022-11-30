@@ -4,7 +4,7 @@ class Equipment:
         self.base_power = base_power
         self.stat_multiplier = stat_multiplier
         self.upgraded_lv = upgraded_lv
-        self.cost_upgrade = 1000 * self.upgraded_lv
+        self.cost_upgrade = 1000 * (self.upgraded_lv+1)
         self.base = base
 
     @property

@@ -117,6 +117,7 @@ class Mechanical:
                             monster.hp -= self.player.skill[choice - 1].dmg()
                             print_withspace(
                                 f"Player used skill {self.player.skill[choice - 1].name}")
+                            print_withspace(f'Player dealt {self.player.skill[choice - 1].dmg()} damage.')
                             return True
                         else:
                             print_withspace("Not enough MP")
@@ -131,8 +132,11 @@ class Mechanical:
             os.system('clear')
             print('=' * 40)
             print_withtime(f"Gold: {self.player.gold} ")
-            print_withspace(
-                f"Exp: {self.player.exp_required[0]}/{self.player.exp_required[1]}")
+            print_withspace(f"Exp: {self.player.exp_required[0]}/{self.player.exp_required[1]}"
+                            f" (lv: {self.player.lv})")
+            print_withspace(f"Point: {self.player.point}"
+                            f" Atk: {self.player.power(self.player.weapon):.2f}"
+                            f" Def: {self.player.power(self.player.armor):.2f}")
             print('=' * 40)
             print_withspace(
                 '1. Upgrade\n2. Stats\n3. Save\n4. Load\n5. Leave base\n6. Exit Game ')
@@ -189,15 +193,15 @@ class Mechanical:
         while True:
             os.system('clear')
             print('=' * 75)
-            print(f"Monster HP: {monster.hp}", end=' ')
-            print(f'Monster MP: {monster.mp}')
+            print(f"Monster HP: {monster.hp:.2f}", end=' ')
+            print(f'Monster MP: {monster.mp:.2f}')
             print('=' * 75)
             print(f'{Ascii_model.monster()[picture]}')
             print('=' * 75)
-            print_withtime(f"Player HP: {self.player.hp} ")
-            print_withtime(f"MP: {self.player.mp} ")
-            print_withtime(f"Atk: {self.player.power(self.player.weapon)} ")
-            print_withspace(f"Def: {self.player.power(self.player.armor)}")
+            print_withtime(f"Player HP: {self.player.hp:.2f} ")
+            print_withtime(f"MP: {self.player.mp:.2f} ")
+            print_withtime(f"Atk: {self.player.power(self.player.weapon):.2f} ")
+            print_withspace(f"Def: {self.player.power(self.player.armor):.2f}")
             print('=' * 75)
             print_withspace("1. Attack\n2. Skill\n3. Run")
             print('=' * 75)
@@ -207,10 +211,10 @@ class Mechanical:
                 legit = True
                 if choice == '1':
                     monster.hp -= self.player.power(self.player.weapon)
-                    print_withspace(f"Player attack {self.player.power(self.player.weapon)}")
+                    print_withspace(f"Player attack {self.player.power(self.player.weapon):.2f}")
                     time.sleep(1)
                 elif choice == '2':
-                    legit = self.used_skill(monster, )
+                    legit = self.used_skill(monster)
                 elif choice == '3':
                     time.sleep(0.5)
                     return None

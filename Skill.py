@@ -4,7 +4,7 @@ class Skill:
         self.__dmg_multiplier = dmg_multiplier
         self.__mp_cost = mp_cost
         self.__upgraded_lv = upgraded_lv
-        self.cost_upgrade = 1000
+        self.cost_upgrade = 1000 * (self.upgraded_lv + 1)
         self.__name = name
 
     @property
