@@ -41,5 +41,3 @@ with open('skill_name.csv') as f:
     rows = csv.DictReader(f)
     for r in rows:
         SKILL.append(r)
-
-print(generate_skill(SKILL))

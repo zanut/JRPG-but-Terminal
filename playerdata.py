@@ -97,4 +97,3 @@ class PlayerData:
             for skill in rows:
                 self.skill.append(skill)
         return self.skill
-
