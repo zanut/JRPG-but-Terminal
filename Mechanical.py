@@ -210,7 +210,7 @@ class Mechanical:
                     print_withspace(f"Player attack {self.player.power(self.player.weapon)}")
                     time.sleep(1)
                 elif choice == '2':
-                    legit = self.used_skill(monster)
+                    legit = self.used_skill(monster, )
                 elif choice == '3':
                     time.sleep(0.5)
                     return None

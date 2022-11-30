@@ -1,4 +1,5 @@
 import json
+import csv
 from Player import Player
 from Equipment import Equipment
 from Skill import Skill
@@ -7,6 +8,7 @@ from Skill import Skill
 class PlayerData:
     def __init__(self, name=''):
         self.name = name
+        self.skill = []
 
     def save(self, player: Player):
         new_data = {
@@ -87,3 +89,12 @@ class PlayerData:
                 return [name for name in data]
         except FileNotFoundError and ValueError:
             return []
+
+    def read_skill(self, file_name):
+        self.skill = []
+        with open(f'{file_name}') as f:
+            rows = csv.DictReader(f)
+            for skill in rows:
+                self.skill.append(skill)
+        return self.skill
+

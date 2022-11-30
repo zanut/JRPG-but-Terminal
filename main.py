@@ -74,10 +74,10 @@ while True:
     choice = input()
     picture = random.randint(0, 3)
     if choice == 'y':
-        monster = generate_monster(in_game.player.lv)
+        monster = generate_monster(in_game.player.lv, PlayerData().read_skill('skill_name.csv'))
         result = in_game.fight(monster, picture)
         if result:
-            in_game.player.lv_up()
+            in_game.player.lv_up(PlayerData().read_skill('skill_name.csv'))
         elif not result:
             in_game.after_game()
     elif choice == 'n':

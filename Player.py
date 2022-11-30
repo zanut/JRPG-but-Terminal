@@ -1,5 +1,7 @@
 from Equipment import Equipment
 from Skill import Skill
+import tools
+import csv
 
 
 class Player:
@@ -74,7 +76,7 @@ class Player:
     def upgrade_stat(self, stat, value):
         self.stat[stat] += value
 
-    def lv_up(self):
+    def lv_up(self, skill: [Skill]):
         while self.exp_required[0] > self.exp_required[1]:
             self.lv += 1
             self.exp_required[0] -= self.exp_required[1]
@@ -82,6 +84,15 @@ class Player:
             self.point += 5
             print(f"Level up! You are now level {self.lv}!")
             print(f"You have {self.point} points to spend")
+            if self.lv % 5 == 0:
+                while True:
+                    new_skill = tools.generate_skill(skill)
+                    if new_skill.name in [s.name for s in self.skill]:
+                        continue
+                    else:
+                        self.new_skill(new_skill)
+                        print(f"You learned {new_skill.name}!")
+                        break
 
     def restore(self):
         self.hp = 100 + self.stat['vit'] * 10
@@ -93,3 +104,8 @@ class Player:
             return base + self.stat['str']*2
         elif equip.base == 'Armor':
             return base + self.stat['vit']*1.5
+
+    def new_skill(self, skill: Skill):
+        self.skill.append(skill)
+
+
