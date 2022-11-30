@@ -30,8 +30,7 @@ class Mechanical:
                 if choice.isdigit():
                     choice = int(choice)
                     if 0 < choice <= len(name):
-                        self.player = PlayerData(self.player.name).load(
-                            name[choice - 1])
+                        self.player = PlayerData(self.player.name).load(name[choice - 1])
                         print_withspace(f"Loaded {name[choice - 1]}")
                         break
                     else:
@@ -87,8 +86,7 @@ class Mechanical:
                 choice = input("Choice(any letter to quit): ")
                 if choice.isdigit() and 0 < int(choice) <= len(
                         self.player.skill):
-                    if self.player.gold < self.player.skill[
-                        int(choice) - 1].cost_upgrade:
+                    if self.player.gold < self.player.skill[int(choice) - 1].cost_upgrade:
                         print_withspace("Not enough gold")
                     else:
                         self.player.gold -= self.player.skill[
@@ -113,21 +111,20 @@ class Mechanical:
                 if choice.isdigit():
                     choice = int(choice)
                     if 0 < choice <= len(self.player.skill):
-                        if self.player.skill[
-                            choice - 1].mp_cost <= self.player.mp:
+                        if self.player.skill[choice - 1].mp_cost <= self.player.mp:
                             self.player.mp -= self.player.skill[
                                 choice - 1].mp_cost
                             monster.hp -= self.player.skill[choice - 1].dmg()
                             print_withspace(
                                 f"Player used skill {self.player.skill[choice - 1].name}")
-                            break
+                            return True
                         else:
                             print_withspace("Not enough MP")
                             continue
                     else:
                         print_withspace("Incorrect choice")
                 else:
-                    break
+                    return False
 
     def after_game(self):
         while True:
@@ -206,36 +203,39 @@ class Mechanical:
             print('=' * 75)
             print_withtime("Choice: ")
             choice = input()
-            if choice == '1':
-                monster.hp -= self.player.power(self.player.weapon)
-                print_withspace(
-                    f"Player attack {self.player.power(self.player.weapon)}")
-                time.sleep(1)
-            elif choice == '2':
-                self.used_skill(monster)
-            elif choice == '3':
-                time.sleep(0.5)
-                return None
-            if monster.hp <= 0:
-                gold = monster.gold
-                xp = monster.xp
-                os.system('clear')
-                print_withspace("You win")
-                print_withspace(f"You received {gold} gold")
-                print_withspace(f"You received {xp} exp")
-                self.player.exp_required[0] += xp
-                self.player.gold += gold
-                return True
-            dmg_received = monster.action() - self.player.power(
-                self.player.armor)
-            if dmg_received > 0:
-                self.player.hp -= dmg_received
-                print_withspace(f"You received {dmg_received} damage")
-                time.sleep(1)
-            elif dmg_received < 0:
-                self.player.hp -= 1
-                print_withspace(f"You received 1 damage")
-                time.sleep(1)
-            if self.player.hp <= 0:
-                print_withspace("You lose")
-                return False
+            if choice.isdigit() and 0 < int(choice) <= 3:
+                legit = True
+                if choice == '1':
+                    monster.hp -= self.player.power(self.player.weapon)
+                    print_withspace(f"Player attack {self.player.power(self.player.weapon)}")
+                    time.sleep(1)
+                elif choice == '2':
+                    legit = self.used_skill(monster)
+                elif choice == '3':
+                    time.sleep(0.5)
+                    return None
+                if legit:
+                    if monster.hp <= 0:
+                        gold = monster.gold
+                        xp = monster.xp
+                        os.system('clear')
+                        print_withspace("You win")
+                        print_withspace(f"You received {gold} gold")
+                        print_withspace(f"You received {xp} exp")
+                        self.player.exp_required[0] += xp
+                        self.player.gold += gold
+                        return True
+                    dmg_received = monster.action() - self.player.power(self.player.armor)
+                    if dmg_received > 0:
+                        self.player.hp -= dmg_received
+                        print_withspace(f"You received {dmg_received} damage")
+                        time.sleep(1)
+                    elif dmg_received < 0:
+                        self.player.hp -= 1
+                        print_withspace(f"You received 1 damage")
+                        time.sleep(1)
+                    if self.player.hp <= 0:
+                        print_withspace("You lose")
+                        return False
+            else:
+                print_withspace("Invalid choice")

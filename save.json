@@ -6,7 +6,7 @@
         "Weapon": [
             10,
             1.5,
-            2,
+            3,
             "Sword"
         ],
         "Armor": [
@@ -24,7 +24,7 @@
                 "Slash"
             ]
         ],
-        "Gold": 1450,
+        "Gold": 450,
         "Stat": {
             "str": 25,
             "vit": 10,

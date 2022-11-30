@@ -1,2 +1,8 @@
-# JRPG-but-Terminal
-My final Project first semester year1
+# Project: JRPG but Terminal
+
+## Project overview:
+### A JRPG game style but in the terminal
+
+requirements:
+
+
