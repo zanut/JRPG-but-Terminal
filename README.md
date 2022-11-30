@@ -31,3 +31,5 @@ this file combine all class together and run the game
 1.  Clone the project or download the project from github exclude file name : .idea , pycache and save.json if you want to start new game
 2.  Open terminal and go to the project directory by cd location of the project
 3.  Run the game by type python3 main.py or python main.py
+
+https://github.com/zanut/JRPG-but-Terminal
