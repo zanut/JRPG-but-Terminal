@@ -1,7 +1,6 @@
 from Equipment import Equipment
 from Skill import Skill
 import tools
-import csv
 
 
 class Player:
@@ -107,5 +106,3 @@ class Player:
 
     def new_skill(self, skill: Skill):
         self.skill.append(skill)
-
-
