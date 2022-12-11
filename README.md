@@ -29,12 +29,14 @@ This class function almost same as Equipment class. However, this class both pla
 -  #### PlayerData  from PlayerData.py
 This class manage to save or load player data such as, name, gold, lv, exp, Skill class, Equipment class, etc
 
-## In additional file:  
-- #### skill_name.csv  
+### In additional file:  
+-  #### tools.py
+this file store all useful function that use in other class
+-  #### skill_name.csv  
 this file store all monster skill also, have room to improved
-- #### Ascii_model.py  
+-  #### Ascii_model.py  
 this file store all ascii model and have room to improved same as skill_name.csv
-- #### main.py  
+-  #### main.py  
 this file combine all class together and run the game
 
 ## Future improvement:
