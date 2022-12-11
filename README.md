@@ -71,3 +71,8 @@ python main.py
 3. If you want to save/load the game, choose save/load from base
 4. If you want to upgrade the character, choose upgrade from base
 5. If you want to exit the game, choose exit from base
+
+GitHub profile:
+```
+https://github.com/zanut/JRPG-but-Terminal.git
+```
