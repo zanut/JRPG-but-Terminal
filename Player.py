@@ -16,7 +16,7 @@ class Player:
                  point: int = 0):
         if stat is None:
             stat = {'str': 5, 'vit': 5, 'int': 5}
-        self._name = name
+        self.__name = name
         self.__hp = 100 + stat['vit'] * 10
         self.__mp = 100 + stat['int'] * 10
         self.__lv = lv
@@ -30,7 +30,7 @@ class Player:
 
     @property
     def name(self):
-        return self._name
+        return self.__name
 
     @property
     def hp(self):
