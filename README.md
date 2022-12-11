@@ -44,13 +44,23 @@ this file combine all class together and run the game
 - add more feature such as, shop, etc
 
 ## How to run the game:
-1.  Clone the project or download the project from GITHUB exclude file name : .idea , pycache and save.json if you want to start new game
-2.  Open terminal and go to the project directory by cd location of the project
-3.  Run the game by type python3 main.py or python main.py
-4.  Enjoy the game  
 
+crete folder name : xxxxx (whatever you want)  
+
+Terminal command
+```
+git clone https://github.com/zanut/JRPG-but-Terminal.git xxxxx(replace folder name)  
+
+cd filelocation (something like this C:\Users\user\Documents\xxxxxx)
+
+python3 main.py
+```
+if it doesn't work, try this command
+```
+python main.py
+```
 ### Requirement
-- python 3.7 or above
+`python 3.8 or above`
 
 
 ## How to play the game:
@@ -58,5 +68,4 @@ this file combine all class together and run the game
 2. Choose the action if you want to fight enter 'y' in the terminal
 3. If you want to save/load the game, choose save/load from base
 4. If you want to upgrade the character, choose upgrade from base
-
-https://github.com/zanut/JRPG-but-Terminal
+5. If you want to exit the game, choose exit from base
