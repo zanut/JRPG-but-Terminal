@@ -1,4 +1,5 @@
 def monster():
+    """ store all monster ASCII model """
     monster_image1 = R'''
                                              ,--,  ,.-.
                 ,                   \,       '-,-`,'-.' | ._

@@ -32,8 +32,10 @@ class Skill:
         self.__upgraded_lv = value
 
     def upgrade(self):
+        """ upgrade the skill also, part of the skill upgrade system """
         self.upgraded_lv += 1
         self.cost_upgrade += 1000
 
     def dmg(self):
+        """ return the damage from the skill """
         return self.base_power * (self.dmg_multiplier ** self.upgraded_lv)

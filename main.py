@@ -10,7 +10,7 @@ from playerdata import PlayerData
 from Mechanical import Mechanical
 from tools import generate_monster, print_withtime, print_withspace
 
-
+# menu system part
 while True:
     os.system('clear')
     print_withspace('=' * 40)
@@ -23,6 +23,7 @@ while True:
     print_withtime('Choice: ')
     choice = input()
     if choice == '1':
+        # New Game default setup
         player = Player(lv=1,
                         weapon=Equipment(15, 1.3, 0, base='Sword'),
                         armor=Equipment(15, 1.3, 0, base='Armor'),
@@ -33,6 +34,7 @@ while True:
         time.sleep(1)
         break
     elif choice == '2':
+        # Load Game
         time.sleep(1)
         name = PlayerData().all_name()
         if len(name) > 0:
@@ -61,24 +63,28 @@ while True:
             print_withspace('Save is empty')
             time.sleep(1)
     elif choice == '3':
+        # Exit
         print_withspace(f'Game is closing . . .')
         time.sleep(0.5)
         sys.exit()
     else:
         print_withspace('Invalid choice please try again')
+
+# Game loop part
 in_game = Mechanical(player)
 in_game.after_game()
 while True:
     in_game.player.restore()
     print_withtime("Wanna fight (y/n): ")
     choice = input()
-    picture = random.randint(0, 3)
+    picture = random.randint(0, 3)  # random monster picture
     if choice == 'y':
+        # fight part
         monster = generate_monster(in_game.player.lv, PlayerData().read_skill('skill_name.csv'))
         result = in_game.fight(monster, picture)
-        if result:
+        if result:  # if player win
             in_game.player.lv_up(PlayerData().read_skill('skill_name.csv'))
-        elif not result:
-            in_game.after_game()
+        elif not result:  # if player lose or run
+            in_game.after_game()  # back to base
     elif choice == 'n':
-        in_game.after_game()
+        in_game.after_game()  # back to base

@@ -40,11 +40,10 @@ class Equipment:
         self.__base = value
 
     def upgrade(self):
+        """ upgrade the equipment also, part of the equipment upgrade system """
         self.upgraded_lv += 1
         self.cost_upgrade += 1000
 
     def get_power(self):
+        """ return the power of the equipment """
         return self.base_power * self.stat_multiplier ** self.upgraded_lv
-
-    def __str__(self):
-        return f"Power: {self.get_power()}"

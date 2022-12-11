@@ -11,6 +11,7 @@ class PlayerData:
         self.skill = []
 
     def save(self, player: Player):
+        """ Save player data to json file """
         new_data = {
             self.name: {
                 "HP": player.hp,
@@ -50,6 +51,7 @@ class PlayerData:
                 json.dump(data, data_file, indent=4)
 
     def load(self, name):
+        """ Load player data from json file """
         with open("save.json", "r") as data_file:
             data = json.load(data_file)
             player = data[name]
@@ -72,6 +74,7 @@ class PlayerData:
                           )
 
     def load_skill(self, name):
+        """ read JSON file and return skill list """
         with open("save.json", "r") as data_file:
             data = json.load(data_file)
             player = data[name]
@@ -83,6 +86,7 @@ class PlayerData:
                           ) for skill in player["Skill"]]
 
     def all_name(self):
+        """ return all name in save.json """
         try:
             with open("save.json", "r") as data_file:
                 data = json.load(data_file)
@@ -91,6 +95,7 @@ class PlayerData:
             return []
 
     def read_skill(self, file_name):
+        """ read skill_name.csv file and return all skill in list """
         self.skill = []
         with open(f'{file_name}') as f:
             rows = csv.DictReader(f)

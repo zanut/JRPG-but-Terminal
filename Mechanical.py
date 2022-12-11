@@ -16,6 +16,7 @@ class Mechanical:
         self.player = player
 
     def load_game(self):
+        """ Load game from file """
         name = PlayerData(self.player.name).all_name()
         if len(name) > 0:
             while True:
@@ -41,6 +42,7 @@ class Mechanical:
             print_withspace("Save is empty")
 
     def stat_up(self):
+        """ this function is for player to upgrade their stats """
         while True:
             os.system('clear')
             print('=' * 40)
@@ -67,6 +69,7 @@ class Mechanical:
                 break
 
     def upgrade_equipment(self, equipment: Equipment):
+        """ this function is for player to upgrade their equipment """
         if self.player.gold < equipment.cost_upgrade:
             print_withspace(
                 f"Not enough gold you need {equipment.cost_upgrade - self.player.gold}")
@@ -76,6 +79,7 @@ class Mechanical:
             print_withspace(f"Weapon upgraded Gold left: {self.player.gold}")
 
     def upgrade_skill(self, skill: [Skill]):
+        """ this function is for player to upgrade their skill """
         if isinstance(skill, list) and len(skill) > 0:
             print('=' * 40)
             for i in range(len(self.player.skill)):
@@ -100,6 +104,7 @@ class Mechanical:
                     break
 
     def used_skill(self, monster: Monster):
+        """ this function is for player to use their skill to attack monster """
         if len(self.player.skill) > 0:
             while True:
                 print('=' * 75)
@@ -128,6 +133,8 @@ class Mechanical:
                     return False
 
     def after_game(self):
+        """ this function is for player to choose what they want to do after
+         choose 'n' after defeat monster """
         while True:
             os.system('clear')
             print('=' * 40)
@@ -190,6 +197,8 @@ class Mechanical:
                 return sys.exit()
 
     def fight(self, monster: Monster, picture: int):
+        """ this function control all action in fight and return True if player
+        win return False when player lose and return None when player run """
         while True:
             os.system('clear')
             print('=' * 75)

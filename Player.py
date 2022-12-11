@@ -73,9 +73,11 @@ class Player:
         self.__gold = value
 
     def upgrade_stat(self, stat, value):
+        """ upgrade the stat of the player also part of the stat upgrade system """
         self.stat[stat] += value
 
     def lv_up(self, skill: [Skill]):
+        """ level up the player and every 5 level up the player will get a new skill """
         while self.exp_required[0] > self.exp_required[1]:
             self.lv += 1
             self.exp_required[0] -= self.exp_required[1]
@@ -94,10 +96,12 @@ class Player:
                         break
 
     def restore(self):
+        """ restore the hp and mp of the player to maximum """
         self.hp = 100 + self.stat['vit'] * 10
         self.mp = 100 + self.stat['int'] * 10
 
     def power(self, equip: Equipment):
+        """ calculate the power of the player together from the weapon and armor """
         base = equip.get_power()
         if equip.base == 'Sword':
             return base + self.stat['str']*2
@@ -105,4 +109,5 @@ class Player:
             return base + self.stat['vit']*1.5
 
     def new_skill(self, skill: Skill):
+        """ add a new skill to the player """
         self.skill.append(skill)

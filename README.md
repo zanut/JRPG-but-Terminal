@@ -7,7 +7,7 @@ My project have inspired from JRPG style. However, my project convert to console
 
 ## Function game
 - the program have a menu to choose the character from load file.
-- the program will be able to generate random monster and level of monster player character +-3 level.
+- the program will be able to generate random monster and level of monster player character +-1 level.
 - the program will be able to save the character to file.
 - the program will be able to generate random skill for player every 5 level and monster will have random skill in range 1 to 3 skills.
 - the program will be able to upgrade the character's skill, armor, weapon.

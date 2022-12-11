@@ -51,22 +51,24 @@ class Monster:
 
     @skill.setter
     def skill(self, skill: Skill):
-        self.skill.append(skill)
+        self.skill.append(skill)  # add skill to the monster
 
     def skill_used(self):
+        """ Return the damage from the skill used or attack if no skill is available """
         index = random.randint(0, len(self.skill)-1)
-        if self.skill[index].mp_cost < self.mp:
+        if self.skill[index].mp_cost < self.mp:  # check if the monster have enough mp to use the skill
             self.mp -= self.skill[index].mp_cost
             power = self.skill[index].dmg()
             print(f'Monster used {self.skill[index].name}!')
-        else:
+        else:  # if the monster doesn't have enough mp to use the skill
             power = self.atk
             print('Monster used attack!')
         return power
 
     def action(self):
+        """ making action for the monster which are attack or skill """
         random_action = random.randint(0, 100)
-        if random_action <= 60:
+        if random_action <= 60:  # 60% chance to use normal attack
             return self.atk
-        else:
+        else:  # 40% chance to use skill
             return self.skill_used()
