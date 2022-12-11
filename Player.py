@@ -91,7 +91,7 @@ class Player:
                     if new_skill.name in [s.name for s in self.skill]:
                         continue
                     else:
-                        self.new_skill(new_skill)
+                        self.skill.append(new_skill)
                         print(f"You learned {new_skill.name}!")
                         break
 
@@ -107,7 +107,3 @@ class Player:
             return base + self.stat['str']*2
         elif equip.base == 'Armor':
             return base + self.stat['vit']*1.5
-
-    def new_skill(self, skill: Skill):
-        """ add a new skill to the player """
-        self.skill.append(skill)

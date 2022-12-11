@@ -1,7 +1,6 @@
 import random
 import sys
 import time
-import csv
 
 from Monster import Monster
 from Skill import Skill
@@ -38,10 +37,3 @@ def generate_skill(lst_obj):
                  mp_cost=int(lst_obj[skill_index]['mp_cost']),
                  name=lst_obj[skill_index]['name'],
                  )
-
-
-SKILL = []
-with open('skill_name.csv') as f:
-    rows = csv.DictReader(f)
-    for r in rows:
-        SKILL.append(r)
