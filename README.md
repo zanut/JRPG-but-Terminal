@@ -60,7 +60,7 @@ if it doesn't work, try this command
 python main.py
 ```
 ### Requirement
-`python 3.8 or above`
+- #### python 3.8 or above
 
 
 ## How to play the game:
