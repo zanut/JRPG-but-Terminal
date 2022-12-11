@@ -26,7 +26,7 @@ class Player:
         self.stat = stat
         self.exp_required = [xp, xp_need]  # [current exp, exp required to lv up]
         self.point = point
-        self._gold = gold
+        self.__gold = gold
 
     @property
     def name(self):
@@ -66,11 +66,11 @@ class Player:
 
     @property
     def gold(self):
-        return self._gold
+        return self.__gold
 
     @gold.setter
     def gold(self, value):
-        self._gold = value
+        self.__gold = value
 
     def upgrade_stat(self, stat, value):
         self.stat[stat] += value
